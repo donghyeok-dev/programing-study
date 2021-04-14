@@ -2,7 +2,7 @@ package study.chapter01;
 
 import java.math.BigInteger;
 
-public class chapter01_dataType {
+public class DataType {
     public static void main(String[] args) {
         System.out.println("byte: " + Byte.MIN_VALUE + " ~ " + Byte.MAX_VALUE);
         System.out.println("short: " + Short.MIN_VALUE + " ~ " + Short.MAX_VALUE);
