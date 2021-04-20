@@ -1,4 +1,4 @@
-package study.chapter01;
+package study.chapter01.practice;
 
 import study.other.DefaultStaticInterface;
 import study.other.PublicOtherClass;

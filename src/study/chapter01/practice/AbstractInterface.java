@@ -1,4 +1,4 @@
-package study.chapter01;
+package study.chapter01.practice;
 
 public class AbstractInterface {
     public static void main(String[] args) {

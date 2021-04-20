@@ -1,6 +1,4 @@
-package study.chapter01;
-
-import study.other.TestDto;
+package study.chapter01.practice;
 
 public class OverXXding {
 

@@ -1,4 +1,4 @@
-package study.chapter01;
+package study.chapter01.practice;
 
 class DefaultClass {
     private String privateValue;
