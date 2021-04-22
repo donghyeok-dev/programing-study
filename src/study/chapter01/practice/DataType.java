@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 public class DataType {
     public static void main(String[] args) {
+        char aa = 70;
+        System.out.println(aa);
         System.out.println("byte: " + Byte.MIN_VALUE + " ~ " + Byte.MAX_VALUE);
         System.out.println("short: " + Short.MIN_VALUE + " ~ " + Short.MAX_VALUE);
         System.out.println("int: " + Integer.MIN_VALUE + " ~ " + Integer.MAX_VALUE);
