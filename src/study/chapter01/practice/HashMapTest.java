@@ -22,6 +22,25 @@ public class HashMapTest {
         hashMap.forEach((s, hProduct) -> System.out.println("key : " + s + " value: " + hProduct));
 
         hashMap.clear();
+
+        System.out.println(halfOverValue(new int[]{1,2,3,1,4,5,3,3,7,8,9,0,2,4,5,4,3,2,6,7,8,3,5,3,6,3,6,8,3,6,8,3,6,5,9,6,3,1,4,3,5,4,2,5,2,6}));
+    }
+
+    public static int halfOverValue(int[] numbers) {
+        HashMap<Integer, Integer> data = new HashMap<>();
+        int topKey=0;
+        int topCount=0;
+
+        for (int num : numbers) {
+            int tempCount = data.containsKey(num) ? data.get(num)+1 : 1;
+            data.put(num, tempCount);
+            if (tempCount > topCount) {
+                topKey = num;
+                topCount = tempCount;
+            }
+        }
+
+        return topKey;
     }
 }
 
