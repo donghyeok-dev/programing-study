@@ -13,7 +13,15 @@ public class HashMapTest {
         hashMap.put("phone", HProduct.builder().productCode(1001L).productName("겔럭시").amount(1000000).build());
         hashMap.put("book", HProduct.builder().productCode(1001L).productName("TDD").amount(25000).build());
 
+        hashMap.remove("phone");
+
+        System.out.println(hashMap.containsKey("phone"));
+
+        hashMap.forEach((s, hProduct) -> System.out.println("key hashcode: " + s.hashCode() + " value hashcode: " + hProduct.hashCode()));
+
         hashMap.forEach((s, hProduct) -> System.out.println("key : " + s + " value: " + hProduct));
+
+        hashMap.clear();
     }
 }
 
