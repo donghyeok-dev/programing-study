@@ -265,3 +265,17 @@ HashTable, HashMap, LinkedHashMap, SortedMap, TreeMap 등 존재
 - 입력 순서 보장하지 않으며, 정렬된 순서로 저장되어 출력됨
   검색기능 O(log(n)) 시간복잡도, Red Black Tree 자료구조로 이루어짐
 - null Key 허용 안함 ( Null Pointer Exception 발생)
+
+
+*Stack
+- LIFO(Last In First Out), 후입선출
+- push(넣고) pop(꺼내고)
+- push, pop이 발생하는 top이라는 입출구가 있고 바닥을 bottom이라 한다.
+- Vector를 상속 받음.
+
+*Queue
+- FIFO(First In First Out), 선입선출
+- offer(넣고), poll(꺼내고)
+- rear(넣는자), front(꺼내는자)
+
+

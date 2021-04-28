@@ -9,7 +9,7 @@ import java.util.EnumSet;
 public class EnumTest<T extends Enum<T> & CommonEnum> {
     private final Class<T> targetEnumClass;
 
-    public Enum<T> getCodeName(String code) {
+    public CommonEnum getCodeName(String code) {
         return EnumSet.allOf(this.targetEnumClass).stream()
                 .filter(testEnum -> testEnum.getCode().equals(code))
                 .findAny()
