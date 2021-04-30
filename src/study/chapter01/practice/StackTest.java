@@ -22,6 +22,7 @@ public class StackTest {
         System.out.println(stack.search(elementC)); // -1, 위에서 pop으로 꺼냈으므로 현재 존재하지 않기 때문에 -1을 리턴.
         System.out.println(stack.search(elementB)); // 1, 찾은 인덱스를 리턴
         System.out.println(stack.search(elementA)); // 2, 찾은 인덱스를 리턴
+        System.out.println(stack.contains("inputA"));
 
 
 

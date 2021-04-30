@@ -272,10 +272,38 @@ HashTable, HashMap, LinkedHashMap, SortedMap, TreeMap 등 존재
 - push(넣고) pop(꺼내고)
 - push, pop이 발생하는 top이라는 입출구가 있고 바닥을 bottom이라 한다.
 - Vector를 상속 받음.
+- 인터럽트처리, 수식의 계산, 서브루틴의 복귀 번지 저장 등에 쓰임
+- 그래프의 깊이 우선 탐색(DFS)에서 사용
+- 재귀적(Recursion) 함수를 호출 할 때 사용
 
 *Queue
 - FIFO(First In First Out), 선입선출
-- offer(넣고), poll(꺼내고)
-- rear(넣는자), front(꺼내는자)
+- offer(넣고) poll(꺼내고)
+- 버퍼로 자주 이용하는 자료구조
+- Collection를 상속 받은 interface이고 LinkedList와 PriorityQueue 구현체 클래스가 존재한다.
+- LinkedList는 Queue의 구현체 클래스로 사용되기도 하지만 List interface의 구현제로도 사용된다.
 
+*우선순위 큐(Priority Queue)
+우선순위 큐(Priority Queue)는 말그대로 큐의 성질을 가지면서 각 데이터가 우선순위를 가지고 있어서
+높은 순서대로 나오게 해주는 큐입니다. 만약 동일한 우선순위라면 큐에서의 위치 순으로 처리 됩니다.
+만약 어떤 객체의 내부 속성에 대해 특별한 기준으로 정렬을 하고 싶다면 COmparable 인터페이스의 compareTo 메소드를 구현하면 됩니다.
 
+*ArrayList와 LinkedList 차이점.
+- ArrayList는 검색이 빈번하며 Thread-safe 하지 않는 곳에서 사용하고,
+  LinkedList는 삭제/삽입이 빈번하고 검색이 필요 없는 곳에서 사용합니다.
+
+- ArrayList는 사이즈가 고정되어 있고, 사이즈를 초과하면 사이즈를 늘려주는 연산이 추가되어야하고,
+삭제 시에는 순차적인 인데스 구조로 인해 삭제된 빈 인덱스를 채워야 하기 때문에 연산 작업이 추가됩니다.
+따라서 ArrayList는 사이즈의 범위를 예상할 수 있고, 삭제/삽입이 빈번하지 않은 곳에서 사용해야 합니다.
+그리고 LinkedList는 삭제/삽입 과정에서 ArrayList 처럼 추가 연산 없이 주소만 연결 시켜주기 때문에
+ArrayList보다 빠릅니다.
+
+ArrayList는 각 객체에 무작위 접근이 가능하지만 LinkedList는 순차접근만 가능합니다.
+또한 ArrayList는 메모리에 연속적인 묶음으로 저장하는 반면, LinkedList는 자료들을 불연속적인 단위로 저장합니다.
+참조의 지역성 면에서 ArrayList가 유리합니다.
+따라서 자료를 검색하는 곳에서는 LinkedList보다는 ArrayList를 사용하는 것이 좋습니다.
+
+LinkedList는 다음 노드에 대한 포인트 정보를 각 노드마다 포함하고 있기 때문에 ArrayList보다 더 많이 공간이 필요합니다.
+
+(LinkedList는 AbstractSequentialList를 상속 받고 있고, ArrayList는 RandomAccess interface를 구현하고 있습니다.)
+(참조의 지역성는 한번 참조된 데이터는 다시 참조될 가능성이 높고 참조된 주변 데이터 역시 같이 참조될 가능성이 높다는 이론입니다.)
