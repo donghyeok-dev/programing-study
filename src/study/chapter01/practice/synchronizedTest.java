@@ -1,22 +1,46 @@
 package study.chapter01.practice;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class synchronizedTest {
-    private static boolean running = true;
+    private static AtomicBoolean running = new AtomicBoolean(true);
+    private static AtomicInteger count = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
 
-        new Thread(() -> {
-           while(running) {
-               //System.out.println("running... " + (++count)); //멈춤
-               // 안멈춤
+        Thread t = new Thread(() -> {
+           while(running.get()) {
+               count.incrementAndGet();
+               System.out.println("T1 Running... " + count.get());
+
            }
-        }).start();
+        });
 
+        Thread t2 = new Thread(() -> {
+            while(running.get()) {
+                count.incrementAndGet();
+                System.out.println("T2 Running... " + count.get());
+
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            while(running.get()) {
+                count.incrementAndGet();
+                System.out.println("T3 Running... " + count.get());
+
+            }
+        });
+
+        t.start();
+        t2.start();
+        t3.start();
         System.out.println("Thread Start !");
-        Thread.sleep(1000);
-        running = false;
+        Thread.sleep(100);
+        running.set(false);
         System.out.println("Thread Stop !");
-
+        System.out.println(">> count after: " + count.get());
     }
 
     public static void test1() {
