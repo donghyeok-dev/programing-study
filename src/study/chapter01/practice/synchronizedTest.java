@@ -17,9 +17,6 @@ public class synchronizedTest {
         s_running = val;
     }
 
-//    public static synchronized int getCount() {
-//        return s_count;
-//    }
     public static synchronized int incrementCount(String user) {
         s_count += 1;
         System.out.println(">> incrementCount s_count: " + s_count + " > " + user);
@@ -74,9 +71,9 @@ public class synchronizedTest {
         s2.start();
         s3.start();
 
-//        t.start();
-//        t2.start();
-//        t3.start();
+        t.start();
+        t2.start();
+        t3.start();
 
         System.out.println("Thread Start !");
         Thread.sleep(100);
@@ -86,33 +83,64 @@ public class synchronizedTest {
 
         System.out.println("Thread Stop !");
         System.out.println(">> count after: " + count.get());
+
+        SynchronizedBlockTestClass obj = new SynchronizedBlockTestClass();
+
+        Thread b = new Thread(() -> {
+            while (obj.getRunning()) {
+                obj.incrementCount();
+                System.out.println("B1 Running... " + obj.getCounter());
+            }
+        });
+
+        Thread b2 = new Thread(() -> {
+            while (obj.getRunning()) {
+                obj.incrementCount();
+                System.out.println("B2 Running... " + obj.getCounter());
+            }
+        });
+
+        Thread b3 = new Thread(() -> {
+            while (obj.getRunning()) {
+                obj.incrementCount();
+                System.out.println("B3 Running... " + obj.getCounter());
+            }
+        });
+
+        b.start();
+        b2.start();
+        b3.start();
+        Thread.sleep(100);
+        obj.setRunning(false);
+
+    }
+}
+
+class SynchronizedBlockTestClass {
+    private int counter = 0;
+    private boolean running = true;
+
+    public int getCounter() {
+        synchronized (this) {
+            return this.counter;
+        }
+    }
+    public void incrementCount() {
+        synchronized (this) {
+//            System.out.println(">> incrementCount user: " + user);
+            ++this.counter;
+        }
     }
 
-    public static void test1() {
-        System.out.println("Test start!");
-
-        new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
-                try {
-                    callMe("Thread1");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
-                try {
-                    callMe("Thread2");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        System.out.println("Test end!");
+    public boolean getRunning() {
+        synchronized (this) {
+            return this.running;
+        }
     }
-    public static synchronized void callMe(String msg) throws InterruptedException {
-        Thread.sleep(500);
-        System.out.println("Call Me! : " + msg);
+
+    public void setRunning(boolean val) {
+        synchronized (this) {
+            this.running = val;
+        }
     }
 }
