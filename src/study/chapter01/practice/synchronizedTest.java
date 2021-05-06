@@ -1,5 +1,6 @@
 package study.chapter01.practice;
 
+import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,7 +24,43 @@ public class synchronizedTest {
         return s_count;
     }
 
+    private static String lock = new String("lock");
+    private static String lock2 = new String("lock");
+    private static String lock3 = new String("lock");
+    private static Integer lockCount = 1000;
+
     public static void main(String[] args) throws InterruptedException {
+
+        Thread z1 = new Thread(() -> {
+            while(lockCount > 0) {
+                synchronized (lock) {
+                    lockCount = lockCount - 10;
+                    System.out.println("z1 : " + lockCount);
+                }
+            }
+        });
+
+        Thread z2 = new Thread(() -> {
+            while(lockCount > 0) {
+                synchronized (lock2) {
+                    lockCount = lockCount - 10;
+                    System.out.println("z2 : " + lockCount);
+                }
+            }
+        });
+
+        Thread z3 = new Thread(() -> {
+            while(lockCount > 0) {
+                synchronized (lock3) {
+                    lockCount = lockCount - 10;
+                    System.out.println("z3 : " + lockCount);
+                }
+            }
+        });
+
+        z1.start();
+        z2.start();
+        z3.start();
 
         Thread s = new Thread(() -> {
             while (getRunning()) {
