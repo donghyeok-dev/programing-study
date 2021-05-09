@@ -317,5 +317,14 @@ LinkedList는 다음 노드에 대한 포인트 정보를 각 노드마다 포�
 - 동기화는 성능 문제를 동반하기 때문에 반드시 필요한 부분에만 사용해야 함.
 - synchronzied 외 Atomic, volatile을 사용하는 방법도 있음.
 
-*Java에서 빈 객체 크기는?
--
+*String, StringBuilder, StringBuffer
+- String: 불변(immutable)의 속성의 문자열를 참조하기 때문에 문자열을 수정하거나 합치는 작업을 수행하면 그 결과값에 대한 새로운
+          문자열을 참조합니다. 이처럼 String은 추가, 수정 등의 연산이 빈번하게 발생하면 Heap 메모리에 많은 가비지를 생성하게 되므로
+          성능상 좋지 않습니다.
+          String은 Thread-Safe합니다.
+
+- StringBuffer, StringBuilder: 가변성을 가지며  .append(), .delete() 등의 메서드를 이용하여 동일한 메모리 객체 내에서
+          문자열을 변경할 수 있습니다. 따라서 문자열을 변경작업을 해야할 때는 String 대신 StringBuffer나 StringBuilder를 사용해야 합니다.
+
+- StringBuffer는 Thread-Safe이고, StringBuilder는 Thread-Safe하지 않기 때문에 멀티 쓰레드 환경에서는 StringBuffer를 사용해야하고,
+  그렇치 않다면 StringBuilder가 더 빠르기 때문에 StringBuilder를 사용해야 합니다.
