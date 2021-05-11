@@ -309,6 +309,8 @@ LinkedList는 다음 노드에 대한 포인트 정보를 각 노드마다 포�
 (참조의 지역성는 한번 참조된 데이터는 다시 참조될 가능성이 높고 참조된 주변 데이터 역시 같이 참조될 가능성이 높다는 이론입니다.)
 
 *동기화
+멀티 스레드에서 Heap영역의 객체를 동시에 사용할 때 발생할 수 있는 문제를 방지하기 위한 방법입니다.
+
 - 공유 자원의 상호 배타적인 접근을 보장하고 데이터 경합을 방지하는 잠금을 제공함.
 - static synchronized 메서드, synchronized 메서드, synchronized 블럭을 사용할 수 있음.
 - synchronized 메서드는 해당 메서드가 포함된 클래스도 잠금 상태가 되므로 주의해서 사용해야 한다.
@@ -323,8 +325,14 @@ LinkedList는 다음 노드에 대한 포인트 정보를 각 노드마다 포�
           성능상 좋지 않습니다.
           String은 Thread-Safe합니다.
 
+- String str = "hello"; 라고 문자열의 값을 명시한 경우 JVM에는 이 값을 String Pool에 넣어 관리합니다.
+  이후 String str2 = "hello"; 라고 동일한 값을 사용할 경우 문자열을 생성하지 않고 String Pool에 참조값만 가져와 사용합니다.
+
 - StringBuffer, StringBuilder: 가변성을 가지며  .append(), .delete() 등의 메서드를 이용하여 동일한 메모리 객체 내에서
           문자열을 변경할 수 있습니다. 따라서 문자열을 변경작업을 해야할 때는 String 대신 StringBuffer나 StringBuilder를 사용해야 합니다.
 
 - StringBuffer는 Thread-Safe이고, StringBuilder는 Thread-Safe하지 않기 때문에 멀티 쓰레드 환경에서는 StringBuffer를 사용해야하고,
   그렇치 않다면 StringBuilder가 더 빠르기 때문에 StringBuilder를 사용해야 합니다.
+
+* 프로세스와 스레드
+   하나의 프로세에는 여러 개의 스레드가 생성될 수 있으므로 1:N관계를 가지며 LWP(Light Weight Process)라고도 합니다.
