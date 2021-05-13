@@ -38,5 +38,19 @@ public class EqualsTest {
          */
         System.out.println(value1.equals(value2)); // true
         System.out.println(value1.equals(value3)); // true
+
+        /*
+            StringBuilder의 toString()은 객체를 생성하므로 == 를 사용할 수 없다.
+            public String toString() {
+                // Create a copy, don't share the array
+                return isLatin1() ? StringLatin1.newString(value, 0, count)
+                                  : StringUTF16.newString(value, 0, count);
+            }
+         */
+        StringBuilder builder1 = new StringBuilder();
+        builder1.append("123");
+        System.out.println(builder1.toString() == value1);
+        System.out.println(builder1.toString().equals(value1));
+
     }
 }
