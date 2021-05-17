@@ -10,7 +10,7 @@ public class FinalTest {
     public static void main(String[] args) {
 
 
-        /*"main1" 값은 String 타입이므로 참조하고 있는 메모리의 값이 변경되지 않습니다.
+        /*String test1 = "main1"에서 "main1" 값은 String 타입이므로 참조하고 있는 메모리의 값이 변경되지 않습니다.
          이와 같이 변하지 않는 값 구 자체를 리터럴(literal)이라고 합니다.
 
          상수(Constant)는 변하지 않는 변수를 뜻합니다. 변수에 final 키워드를 사용합니다.
